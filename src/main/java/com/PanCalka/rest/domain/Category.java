@@ -1,4 +1,4 @@
-package guru.springfamework.domain;
+package com.PanCalka.rest.domain;
 
 import lombok.Data;
 
@@ -7,9 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by jt on 9/24/17.
- */
 @Data
 @Entity
 public class Category {

@@ -1,7 +1,9 @@
 package com.PanCalka.rest.bootstrap;
 
 import com.PanCalka.rest.domain.Category;
+import com.PanCalka.rest.domain.Customer;
 import com.PanCalka.rest.repositories.CategoryRepository;
+import com.PanCalka.rest.repositories.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,8 +14,11 @@ public class Bootstrap implements CommandLineRunner{
 
     private CategoryRepository categoryRepository;
 
-    public Bootstrap(CategoryRepository categoryRepository) {
+    private CustomerRepository customerRepository;
+
+    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
         this.categoryRepository = categoryRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -39,6 +44,18 @@ public class Bootstrap implements CommandLineRunner{
         categoryRepository.save(exotic);
         categoryRepository.save(nuts);
 
-        log.info("Data loaded " + categoryRepository.count());
+        Customer goodClient = new Customer();
+        goodClient.setName("Ted");
+        Customer badClient = new Customer();
+        goodClient.setName("Fred");
+        Customer angryClient = new Customer();
+        goodClient.setName("Ed");
+        Customer sadClient = new Customer();
+        goodClient.setName("Ped");
+
+        customerRepository.save(goodClient);
+        customerRepository.save(badClient);
+        customerRepository.save(angryClient);
+        customerRepository.save(sadClient);
     }
 }

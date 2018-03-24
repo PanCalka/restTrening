@@ -51,7 +51,7 @@ public class CategoryControllerTest {
 
         CategoryDTO category2 = new CategoryDTO();
         category2.setId(2l);
-        category2.setName("Tom");
+        category2.setName(NAME);
 
         List<CategoryDTO> categories = Arrays.asList(category1, category2);
 

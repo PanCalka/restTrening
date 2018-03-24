@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-public class CategoryServiceTest {
+public class CategoryServiceImplTest {
 
     static final String NAME = "test";
     static final long ID = 1L;
@@ -42,7 +42,7 @@ public class CategoryServiceTest {
         List<CategoryDTO> allCategories = categoryService.getAllCategories();
 
         //then
-        assertEquals(3, allCategories.size());
+        assertEquals(categories.size(), allCategories.size());
     }
 
     @Test

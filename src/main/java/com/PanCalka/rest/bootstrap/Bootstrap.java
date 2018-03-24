@@ -23,6 +23,11 @@ public class Bootstrap implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
+        createAndLoadCategories();
+        createAndLoadCustomers();
+    }
+
+    private void createAndLoadCategories() {
         Category fruits = new Category();
         fruits.setName("Fruits");
 
@@ -43,15 +48,21 @@ public class Bootstrap implements CommandLineRunner{
         categoryRepository.save(fresh);
         categoryRepository.save(exotic);
         categoryRepository.save(nuts);
+    }
 
+    private void createAndLoadCustomers() {
         Customer goodClient = new Customer();
+        goodClient.setId(1L);
         goodClient.setName("Ted");
         Customer badClient = new Customer();
-        goodClient.setName("Fred");
+        badClient.setId(2L);
+        badClient.setName("Fred");
         Customer angryClient = new Customer();
-        goodClient.setName("Ed");
+        angryClient.setId(3L);
+        angryClient.setName("Ed");
         Customer sadClient = new Customer();
-        goodClient.setName("Ped");
+        sadClient.setId(4L);
+        sadClient.setName("Ped");
 
         customerRepository.save(goodClient);
         customerRepository.save(badClient);

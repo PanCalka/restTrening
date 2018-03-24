@@ -1,5 +1,6 @@
 package com.PanCalka.rest.api.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 public class CustomerDTO {
     String firstName;
     String name;
+
+    @JsonProperty("customer_url")
     String customerUrl;
 
     public String getFirstName() {

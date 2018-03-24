@@ -63,13 +63,9 @@ public class CustomerServiceImplTest {
     public void shouldCreateNewCustomer() throws Exception {
 
         // given
-        CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName("Tom");
-
-        Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstName());
-        savedCustomer.setName(customerDTO.getName());
-        savedCustomer.setId(1L);
+        CreateCustomerAndCustomerDto createCustomerAndCustomerDto = new CreateCustomerAndCustomerDto().invoke();
+        CustomerDTO customerDTO = createCustomerAndCustomerDto.getCustomerDTO();
+        Customer savedCustomer = createCustomerAndCustomerDto.getSavedCustomer();
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
 
@@ -79,5 +75,47 @@ public class CustomerServiceImplTest {
         //then
         assertThat(savedCustomerDto.getFirstName()).isEqualTo(customerDTO.getFirstName());
         assertThat("/api/v1/customer/1").isEqualTo(savedCustomerDto.getCustomerUrl());
+    }
+
+    @Test
+    public void shouldSaveCustomerByDto() throws Exception {
+
+        // given
+        CreateCustomerAndCustomerDto createCustomerAndCustomerDto = new CreateCustomerAndCustomerDto().invoke();
+        CustomerDTO customerDTO = createCustomerAndCustomerDto.getCustomerDTO();
+        Customer savedCustomer = createCustomerAndCustomerDto.getSavedCustomer();
+
+        when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
+
+        //when
+        CustomerDTO savedCustomerDto = customerService.saveCustomerByDTO(1L, customerDTO);
+
+        //then
+        assertThat(savedCustomerDto.getFirstName()).isEqualTo(customerDTO.getFirstName());
+        assertThat("/api/v1/customer/1").isEqualTo(savedCustomerDto.getCustomerUrl());
+    }
+
+    private class CreateCustomerAndCustomerDto {
+        private CustomerDTO customerDTO;
+        private Customer savedCustomer;
+
+        public CustomerDTO getCustomerDTO() {
+            return customerDTO;
+        }
+
+        public Customer getSavedCustomer() {
+            return savedCustomer;
+        }
+
+        public CreateCustomerAndCustomerDto invoke() {
+            customerDTO = new CustomerDTO();
+            customerDTO.setFirstName("Bob");
+
+            savedCustomer = new Customer();
+            savedCustomer.setFirstName(customerDTO.getFirstName());
+            savedCustomer.setName(customerDTO.getName());
+            savedCustomer.setId(1L);
+            return this;
+        }
     }
 }

@@ -1,12 +1,15 @@
 package com.PanCalka.rest.api.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDTO {
+
+    @ApiModelProperty(value = "This is firstname", required = true)
     String firstName;
     String name;
 

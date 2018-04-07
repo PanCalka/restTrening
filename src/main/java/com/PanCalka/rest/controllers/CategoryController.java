@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
-@RequestMapping("/api/v1/categories")
+@RequestMapping(CategoryController.BASE_URL)
 public class CategoryController {
 
+    public static final String BASE_URL = "/api/v1/categories";
     CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {

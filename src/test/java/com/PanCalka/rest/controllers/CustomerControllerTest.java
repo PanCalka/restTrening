@@ -96,7 +96,7 @@
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(asJsonString(customer)))
                     .andExpect(status().isCreated())
-                    .andExpect(jsonPath("$.firstName", equalTo("Fred")))
+                    .andExpect(jsonPath("$.firstName", equalTo("Barnie")))
                     .andExpect(jsonPath("$.customer_url", equalTo("/api/v1/customers/1")));
         }
 
